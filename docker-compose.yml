@@ -1,0 +1,11 @@
+services:
+  yolo-detector:
+    build:
+      context: .
+      dockerfile: Dockerfile-cpu # untested since moving to GPU
+    env_file: .env
+    volumes:
+      - ./videos:/app/videos
+    command: >
+      --video_url=${VIDEO_URL:-videos/dogs.mp4}
+      --callback_url=${CALLBACK_URL:-https://ngrok.app/callback}
